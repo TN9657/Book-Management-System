@@ -1,0 +1,38 @@
+<div class="book-detail-container" *ngIf="book">
+  <div class="detail-header">
+    <h2>{{ book.title }}</h2>
+    <div class="actions">
+      <button class="btn btn-secondary" (click)="goBack()">Back</button>
+      <button class="btn btn-warning" [routerLink]="['/edit', book.id]">Edit</button>
+      <button class="btn btn-danger" (click)="deleteBook()">Delete</button>
+    </div>
+  </div>
+
+  <div class="detail-content">
+    <div class="detail-row">
+      <label>Author:</label>
+      <span>{{ book.author }}</span>
+    </div>
+    <div class="detail-row">
+      <label>ISBN:</label>
+      <span>{{ book.isbn }}</span>
+    </div>
+    <div class="detail-row">
+      <label>Published Year:</label>
+      <span>{{ book.publishedYear }}</span>
+    </div>
+    <div class="detail-row">
+      <label>Genre:</label>
+      <span>{{ book.genre }}</span>
+    </div>
+    <div class="detail-row" *ngIf="book.description">
+      <label>Description:</label>
+      <p>{{ book.description }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="not-found" *ngIf="!book">
+  <h3>Book not found</h3>
+  <button class="btn btn-primary" [routerLink]="['/']">Go to Book List</button>
+</div>

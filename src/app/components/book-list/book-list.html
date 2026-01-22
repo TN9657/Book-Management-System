@@ -1,0 +1,26 @@
+<div class="book-list-container">
+  <div class="header">
+    <h2>Book Management System</h2>
+    <button class="btn btn-primary" [routerLink]="['/add']">Add New Book</button>
+  </div>
+
+  <div class="book-grid">
+    <div class="book-card" *ngFor="let book of books">
+      <h3>{{ book.title }}</h3>
+      <p class="author">by {{ book.author }}</p>
+      <p class="info"><strong>ISBN:</strong> {{ book.isbn }}</p>
+      <p class="info"><strong>Year:</strong> {{ book.publishedYear }}</p>
+      <p class="info"><strong>Genre:</strong> {{ book.genre }}</p>
+      <p class="description" *ngIf="book.description">{{ book.description }}</p>
+      <div class="actions">
+        <button class="btn btn-info" [routerLink]="['/detail', book.id]">View</button>
+        <button class="btn btn-warning" [routerLink]="['/edit', book.id]">Edit</button>
+        <button class="btn btn-danger" (click)="deleteBook(book.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-books" *ngIf="books.length === 0">
+    <p>No books available. Add your first book!</p>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="book-form-container">
+  <h2>{{ isEditMode ? 'Edit Book' : 'Add New Book' }}</h2>
+
+  <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+    <div class="form-group">
+      <label for="title">Title *</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="book.title"
+        required
+        #title="ngModel"
+      />
+      <div class="error" *ngIf="title.invalid && title.touched">
+        Title is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="author">Author *</label>
+      <input
+        type="text"
+        id="author"
+        name="author"
+        [(ngModel)]="book.author"
+        required
+        #author="ngModel"
+      />
+      <div class="error" *ngIf="author.invalid && author.touched">
+        Author is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="isbn">ISBN *</label>
+      <input
+        type="text"
+        id="isbn"
+        name="isbn"
+        [(ngModel)]="book.isbn"
+        required
+        #isbn="ngModel"
+      />
+      <div class="error" *ngIf="isbn.invalid && isbn.touched">
+        ISBN is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="publishedYear">Published Year *</label>
+      <input
+        type="number"
+        id="publishedYear"
+        name="publishedYear"
+        [(ngModel)]="book.publishedYear"
+        required
+        min="1000"
+        max="2100"
+        #publishedYear="ngModel"
+      />
+      <div class="error" *ngIf="publishedYear.invalid && publishedYear.touched">
+        Valid year is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="genre">Genre *</label>
+      <input
+        type="text"
+        id="genre"
+        name="genre"
+        [(ngModel)]="book.genre"
+        required
+        #genre="ngModel"
+      />
+      <div class="error" *ngIf="genre.invalid && genre.touched">
+        Genre is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="book.description"
+        rows="4"
+      ></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">
+        {{ isEditMode ? 'Update' : 'Add' }} Book
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
